@@ -1,14 +1,17 @@
 package net.catstack.nfcpay.ui.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.login_fragment.*
+import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
+import net.catstack.nfcpay.common.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
     private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
@@ -20,6 +23,14 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        (requireActivity() as MainActivity).hideBottomNavigation()
+
+        loginButton.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
+        }
+
+        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
 }
