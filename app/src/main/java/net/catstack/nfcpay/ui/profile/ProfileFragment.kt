@@ -1,26 +1,26 @@
-package net.catstack.nfcpay.ui.dashboard
+package net.catstack.nfcpay.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
 
-class DashboardFragment : BaseFragment() {
+class ProfileFragment : BaseFragment() {
 
-    private val dashboardViewModel: DashboardViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            text_dashboard.text = it
+        viewModel.text.observe(viewLifecycleOwner) {
+            text_notifications.text = it
         }
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 }
