@@ -31,9 +31,22 @@
             android:id="@+id/action_loginFragment_to_navigation_home"
             app:destination="@id/navigation_home"
             app:popUpTo="@id/mobile_navigation" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_loginFragment"
         app:popUpTo="@id/mobile_navigation"
         app:destination="@id/loginFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="net.catstack.nfcpay.ui.register.RegisterFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/register_fragment">
+        <action
+            android:id="@+id/action_registerFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/mobile_navigation" />
+    </fragment>
 </navigation>

@@ -30,6 +30,10 @@ class LoginFragment : BaseFragment() {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
         }
 
+        registerButton.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+        }
+
         (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
 
