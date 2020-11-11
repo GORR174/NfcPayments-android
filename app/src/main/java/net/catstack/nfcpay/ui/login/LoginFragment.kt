@@ -27,6 +27,7 @@ class LoginFragment : BaseFragment() {
         (requireActivity() as MainActivity).hideBottomNavigation()
 
         loginButton.setOnClickListener {
+            viewModel.login()
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
         }
 

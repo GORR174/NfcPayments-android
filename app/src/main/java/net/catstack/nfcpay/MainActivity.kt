@@ -9,10 +9,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
+import net.catstack.nfcpay.data.AccountRepository
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+
+    private val accountRepository: AccountRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navController.navigate(MobileNavigationDirections.actionGlobalLoginFragment())
+        if (!accountRepository.isUserAuthorized()) {
+            navController.navigate(MobileNavigationDirections.actionGlobalLoginFragment())
+        }
     }
 
     fun hideBottomNavigation() {

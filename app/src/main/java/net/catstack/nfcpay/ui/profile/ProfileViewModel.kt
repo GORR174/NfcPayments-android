@@ -3,11 +3,17 @@ package net.catstack.nfcpay.ui.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import net.catstack.nfcpay.data.AccountRepository
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(private val accountRepository: AccountRepository) : ViewModel() {
+    private val userTokenMutable = MutableLiveData("")
+    val userToken: LiveData<String> = userTokenMutable
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is profile Fragment"
+    fun getProfile() {
+        userTokenMutable.postValue(accountRepository.userToken?.accessToken)
     }
-    val text: LiveData<String> = _text
+
+    fun logout() {
+        accountRepository.logout()
+    }
 }

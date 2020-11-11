@@ -59,6 +59,9 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:2.1.6"
     implementation "org.koin:koin-androidx-ext:2.1.6"
 
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     // Tests
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

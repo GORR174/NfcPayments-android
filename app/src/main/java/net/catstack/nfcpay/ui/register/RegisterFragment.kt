@@ -24,6 +24,7 @@ class RegisterFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         registerButton.setOnClickListener {
+            viewModel.register()
             findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToNavigationHome())
         }
     }
