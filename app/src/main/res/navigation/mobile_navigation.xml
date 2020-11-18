@@ -49,4 +49,17 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/mobile_navigation" />
     </fragment>
+    <fragment
+        android:id="@+id/homeSellerFragment"
+        android:name="net.catstack.nfcpay.ui.home.seller.HomeSellerFragment"
+        android:label="home_seller_fragment"
+        tools:layout="@layout/home_seller_fragment" />
+    <action
+        android:id="@+id/action_global_homeSellerFragment"
+        app:popUpTo="@id/mobile_navigation"
+        app:destination="@id/homeSellerFragment" />
+    <action
+        android:id="@+id/action_global_navigation_home"
+        app:destination="@id/navigation_home"
+        app:popUpTo="@id/mobile_navigation" />
 </navigation>

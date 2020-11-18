@@ -24,11 +24,12 @@ class LoginFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        (requireActivity() as MainActivity).hideBottomNavigation()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNavigation()
 
         loginButton.setOnClickListener {
             viewModel.login()
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
+            activity.navigateToHome()
         }
 
         registerButton.setOnClickListener {
