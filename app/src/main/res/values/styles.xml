@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="AuthInputFiled">
+        <item name="android:background">@drawable/input_background</item>
+        <item name="android:padding">@dimen/input_padding</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/input_text_size</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

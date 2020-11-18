@@ -11,8 +11,9 @@ import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseFragment() {
+class LoginFragment : BaseFragment(true) {
     private val viewModel: LoginViewModel by viewModel()
+    private lateinit var activity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,18 +25,17 @@ class LoginFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        (requireActivity() as MainActivity).hideBottomNavigation()
+        activity = requireActivity() as MainActivity
+
+        activity.hideBottomNavigation()
 
         loginButton.setOnClickListener {
             viewModel.login()
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
         }
 
-        registerButton.setOnClickListener {
+        forgotPasswordButton.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
-
-        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
-
 }

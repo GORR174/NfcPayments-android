@@ -6,4 +6,9 @@
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
+
+    <string name="login_email_hint">Введите Email</string>
+    <string name="login_password_hint">Введите пароль</string>
+    <string name="button_login">Войти</string>
+    <string name="button_forgot_password">Забыли пароль?</string>
 </resources>

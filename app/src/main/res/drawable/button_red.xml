@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO fix alpha color issue -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#B50F00">
+
+    <item android:id="@android:id/background">
+        <selector>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/ui_red" />
+                    <corners android:radius="6dp" />
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>
