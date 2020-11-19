@@ -13,4 +13,5 @@
 
     <color name="ui_red">#F15045</color>
     <color name="brand_red">#EF3124</color>
+    <color name="secondary">#6D7986</color>
 </resources>

@@ -7,26 +7,120 @@
     tools:context=".ui.register.RegisterFragment">
 
     <TextView
-        android:id="@+id/testText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello RegisterFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/registerHelpText"
+        style="@style/InputFieldHelpText"
+        android:text="@string/register_name_title"
+        app:layout_constraintBottom_toTopOf="@id/nameInputFieldLayout"
+        app:layout_constraintStart_toStartOf="@id/nameInputFieldLayout" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerButton"
-        android:layout_width="256dp"
-        android:layout_height="64dp"
-        android:text="Register"
-        android:textSize="20sp"
-        app:cornerRadius="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameInputFieldLayout"
+        style="@style/AuthInputFiledLayout"
+        app:layout_constraintBottom_toTopOf="@id/phoneInputFieldLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <EditText
+            android:id="@+id/nameInputField"
+            style="@style/AuthInputFiled"
+            android:hint="@string/register_name_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/phoneHelpText"
+        style="@style/InputFieldHelpText"
+        android:text="@string/register_phone_title"
+        app:layout_constraintBottom_toTopOf="@id/phoneInputFieldLayout"
+        app:layout_constraintStart_toStartOf="@id/phoneInputFieldLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneInputFieldLayout"
+        style="@style/AuthInputFiledLayout"
+        android:layout_marginTop="44dp"
+        app:layout_constraintBottom_toTopOf="@id/emailInputFieldLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameInputFieldLayout"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <EditText
+            android:id="@+id/phoneInputField"
+            style="@style/AuthInputFiled"
+            android:hint="@string/register_phone_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/emailHelpText"
+        style="@style/InputFieldHelpText"
+        android:text="@string/register_email_title"
+        app:layout_constraintBottom_toTopOf="@id/emailInputFieldLayout"
+        app:layout_constraintStart_toStartOf="@id/emailInputFieldLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailInputFieldLayout"
+        style="@style/AuthInputFiledLayout"
+        android:layout_marginTop="44dp"
+        app:layout_constraintBottom_toTopOf="@id/innInputFieldLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneInputFieldLayout"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <EditText
+            android:id="@+id/emailInputField"
+            style="@style/AuthInputFiled"
+            android:hint="@string/register_email_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/innHelpText"
+        style="@style/InputFieldHelpText"
+        android:text="@string/register_inn_title"
+        app:layout_constraintBottom_toTopOf="@id/innInputFieldLayout"
+        app:layout_constraintStart_toStartOf="@id/innInputFieldLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/innInputFieldLayout"
+        style="@style/AuthInputFiledLayout"
+        android:layout_marginTop="44dp"
+        app:layout_constraintBottom_toTopOf="@id/registerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailInputFieldLayout"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <EditText
+            android:id="@+id/innInputField"
+            style="@style/AuthInputFiled"
+            android:hint="@string/register_inn_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/registerButton"
+        style="@style/RedButton"
+        android:layout_marginTop="30dp"
+        android:text="@string/button_register"
+        app:layout_constraintBottom_toTopOf="@id/registerInfoText"
+        app:layout_constraintEnd_toEndOf="@id/innInputFieldLayout"
+        app:layout_constraintStart_toStartOf="@id/innInputFieldLayout"
+        app:layout_constraintTop_toBottomOf="@id/innInputFieldLayout"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/registerInfoText"
+        style="@style/InputFieldHelpText"
+        android:layout_width="0dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/register_info"
+        android:textAlignment="center"
+        android:textColor="@color/secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/registerButton"
+        app:layout_constraintStart_toStartOf="@id/registerButton"
+        app:layout_constraintTop_toBottomOf="@id/registerButton"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

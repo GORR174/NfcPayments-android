@@ -13,4 +13,15 @@
     <string name="login_button_forgot_password">Забыли пароль?</string>
     <string name="login_register_help">Ещё нет аккаунта?</string>
     <string name="login_register_button">Регистрация</string>
+
+    <string name="register_name_title">Имя</string>
+    <string name="register_name_hint">Иван</string>
+    <string name="register_phone_title">Номер телефона</string>
+    <string name="register_phone_hint">+7 000 000-00-00</string>
+    <string name="register_email_title">E-mail</string>
+    <string name="register_email_hint">example@gmail.com</string>
+    <string name="register_inn_title">ИНН компании</string>
+    <string name="register_inn_hint">0000000000</string>
+    <string name="button_register">Отправить заявку</string>
+    <string name="register_info">После заполнения заявки с вами свяжется\nменеджер для уточнения деталей подключения.</string>
 </resources>

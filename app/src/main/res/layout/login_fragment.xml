@@ -50,15 +50,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/loginButton"
-        style="@style/RedButton"
-        android:layout_marginTop="60dp"
-        android:text="@string/button_login"
-        app:layout_constraintEnd_toEndOf="@id/emailInputFieldLayout"
-        app:layout_constraintStart_toStartOf="@id/emailInputFieldLayout"
-        app:layout_constraintTop_toBottomOf="@id/passwordInputFieldLayout" />
-
-    <Button
         android:id="@+id/forgotPasswordButton"
         style="@style/TextButton"
         android:layout_width="wrap_content"
@@ -68,6 +59,15 @@
         android:text="@string/login_button_forgot_password"
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="@id/passwordInputFieldLayout"
+        app:layout_constraintTop_toBottomOf="@id/passwordInputFieldLayout" />
+
+    <Button
+        android:id="@+id/loginButton"
+        style="@style/RedButton"
+        android:layout_marginTop="60dp"
+        android:text="@string/button_login"
+        app:layout_constraintEnd_toEndOf="@id/emailInputFieldLayout"
+        app:layout_constraintStart_toStartOf="@id/emailInputFieldLayout"
         app:layout_constraintTop_toBottomOf="@id/passwordInputFieldLayout" />
 
     <View
