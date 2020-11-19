@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_fragment.*
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
@@ -35,6 +37,10 @@ class LoginFragment : BaseFragment(true) {
         }
 
         forgotPasswordButton.setOnClickListener {
+            Toast.makeText(requireContext(), "Бывает", Toast.LENGTH_SHORT).show()
+        }
+
+        registerButton.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
     }

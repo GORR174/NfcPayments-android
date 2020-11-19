@@ -65,7 +65,7 @@
         android:layout_height="32dp"
         android:paddingTop="0dp"
         android:paddingEnd="0dp"
-        android:text="@string/button_forgot_password"
+        android:text="@string/login_button_forgot_password"
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="@id/passwordInputFieldLayout"
         app:layout_constraintTop_toBottomOf="@id/passwordInputFieldLayout" />
@@ -76,5 +76,31 @@
         android:layout_height="54dp"
         android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/registerHelpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextButton"
+        android:text="@string/login_register_help"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/registerButton"
+        app:layout_constraintTop_toTopOf="@id/registerBackground"
+        app:layout_constraintBottom_toBottomOf="@id/registerBackground" />
+
+    <Button
+        android:id="@+id/registerButton"
+        style="@style/TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:paddingStart="4dp"
+        android:paddingTop="0dp"
+        android:text="@string/login_register_button"
+        android:textColor="@color/brand_red"
+        app:layout_constraintStart_toEndOf="@id/registerHelpText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/registerBackground"
+        app:layout_constraintBottom_toBottomOf="@id/registerBackground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

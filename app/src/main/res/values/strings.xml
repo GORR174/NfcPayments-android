@@ -10,5 +10,7 @@
     <string name="login_email_hint">Введите Email</string>
     <string name="login_password_hint">Введите пароль</string>
     <string name="button_login">Войти</string>
-    <string name="button_forgot_password">Забыли пароль?</string>
+    <string name="login_button_forgot_password">Забыли пароль?</string>
+    <string name="login_register_help">Ещё нет аккаунта?</string>
+    <string name="login_register_button">Регистрация</string>
 </resources>
