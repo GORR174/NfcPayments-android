@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="auth_vertical_margin">30dp</dimen>
+
     <dimen name="input_text_size">14sp</dimen>
     <dimen name="input_padding">16dp</dimen>
 </resources>
