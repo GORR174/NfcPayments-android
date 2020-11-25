@@ -2,8 +2,26 @@
     <string name="app_name">Nfc Payment</string>
 
     <string name="title_login">Login</string>
-    <string name="title_register">Register</string>
-    <string name="title_home">Home</string>
-    <string name="title_history">History</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_register">Заполнить заявку</string>
+    <string name="title_home">Главная</string>
+    <string name="title_payment">Оплата</string>
+    <string name="title_history">История</string>
+
+    <string name="login_email_hint">Введите Email</string>
+    <string name="login_password_hint">Введите пароль</string>
+    <string name="button_login">Войти</string>
+    <string name="login_button_forgot_password">Забыли пароль?</string>
+    <string name="login_register_help">Ещё нет аккаунта?</string>
+    <string name="login_register_button">Регистрация</string>
+
+    <string name="register_name_title">Имя</string>
+    <string name="register_name_hint">Иван</string>
+    <string name="register_phone_title">Номер телефона</string>
+    <string name="register_phone_hint">+7 000 000-00-00</string>
+    <string name="register_email_title">E-mail</string>
+    <string name="register_email_hint">example@gmail.com</string>
+    <string name="register_inn_title">ИНН компании</string>
+    <string name="register_inn_hint">0000000000</string>
+    <string name="button_register">Отправить заявку</string>
+    <string name="register_info">После заполнения заявки с вами свяжется\nменеджер для уточнения деталей подключения.</string>
 </resources>

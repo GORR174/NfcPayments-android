@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="net.catstack.nfcpay.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:name="net.catstack.nfcpay.ui.payment.PaymentFragment"
+        android:label="@string/title_payment"
+        tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="net.catstack.nfcpay.ui.login.LoginFragment"

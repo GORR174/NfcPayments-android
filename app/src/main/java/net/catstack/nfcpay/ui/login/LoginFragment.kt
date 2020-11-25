@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_fragment.*
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : BaseFragment() {
+class LoginFragment : BaseFragment(true) {
     private val viewModel: LoginViewModel by viewModel()
+    private lateinit var activity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,18 +27,21 @@ class LoginFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        (requireActivity() as MainActivity).hideBottomNavigation()
+        activity = requireActivity() as MainActivity
+
+        activity.hideBottomNavigation()
 
         loginButton.setOnClickListener {
             viewModel.login()
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
         }
 
+        forgotPasswordButton.setOnClickListener {
+            Toast.makeText(requireContext(), "Бывает", Toast.LENGTH_SHORT).show()
+        }
+
         registerButton.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
-
-        (requireActivity() as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
     }
-
 }
