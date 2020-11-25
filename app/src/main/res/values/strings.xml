@@ -2,10 +2,10 @@
     <string name="app_name">Nfc Payment</string>
 
     <string name="title_login">Login</string>
-    <string name="title_register">Register</string>
-    <string name="title_home">Home</string>
-    <string name="title_history">History</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_register">Заполнить заявку</string>
+    <string name="title_home">Главная</string>
+    <string name="title_payment">Оплата</string>
+    <string name="title_history">История</string>
 
     <string name="login_email_hint">Введите Email</string>
     <string name="login_password_hint">Введите пароль</string>

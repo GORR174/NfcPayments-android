@@ -1,19 +1,18 @@
-package net.catstack.nfcpay.ui.profile
+package net.catstack.nfcpay.ui.payment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_payment.*
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProfileFragment : BaseFragment() {
+class PaymentFragment : BaseFragment() {
 
-    private val viewModel: ProfileViewModel by viewModel()
+    private val viewModel: PaymentViewModel by viewModel()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -24,7 +23,7 @@ class ProfileFragment : BaseFragment() {
             tokenText.text = it
         }
 
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_payment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -35,7 +34,7 @@ class ProfileFragment : BaseFragment() {
         logoutButton.setOnClickListener {
             viewModel.logout()
             findNavController().navigate(
-                ProfileFragmentDirections.actionGlobalLoginFragment()
+                PaymentFragmentDirections.actionGlobalLoginFragment()
             )
         }
     }

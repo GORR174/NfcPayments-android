@@ -1,11 +1,11 @@
-package net.catstack.nfcpay.ui.profile
+package net.catstack.nfcpay.ui.payment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import net.catstack.nfcpay.data.AccountRepository
 
-class ProfileViewModel(private val accountRepository: AccountRepository) : ViewModel() {
+class PaymentViewModel(private val accountRepository: AccountRepository) : ViewModel() {
     private val userTokenMutable = MutableLiveData("")
     val userToken: LiveData<String> = userTokenMutable
 
