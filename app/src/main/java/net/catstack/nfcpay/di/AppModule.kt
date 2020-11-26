@@ -22,4 +22,4 @@ val appModule = module {
     }
 }
 
-val appModules = listOf(appModule, repositoryModule)
+val appModules = listOf(appModule, repositoryModule, networkModule)

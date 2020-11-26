@@ -1,7 +1,7 @@
 package net.catstack.nfcpay.di
 
 import android.content.Context
-import net.catstack.nfcpay.data.AccountRepository
+import net.catstack.nfcpay.data.local.AccountRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

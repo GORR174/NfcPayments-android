@@ -1,7 +1,7 @@
 package net.catstack.nfcpay.ui.register
 
 import androidx.lifecycle.ViewModel
-import net.catstack.nfcpay.data.AccountRepository
+import net.catstack.nfcpay.data.local.AccountRepository
 import net.catstack.nfcpay.domain.TokenModel
 import kotlin.random.Random
 

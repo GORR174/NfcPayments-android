@@ -1,4 +1,4 @@
-package net.catstack.nfcpay.data
+package net.catstack.nfcpay.data.local
 
 import android.content.SharedPreferences
 import com.google.gson.Gson

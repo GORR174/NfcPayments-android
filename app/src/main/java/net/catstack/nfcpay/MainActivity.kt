@@ -11,7 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
-import net.catstack.nfcpay.data.AccountRepository
+import net.catstack.nfcpay.data.local.AccountRepository
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
