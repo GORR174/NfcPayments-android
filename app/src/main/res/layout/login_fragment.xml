@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.auth.login.LoginFragment">
 
     <ImageView
         android:id="@+id/logo"
@@ -70,6 +70,18 @@
         app:layout_constraintStart_toStartOf="@id/emailInputFieldLayout"
         app:layout_constraintTop_toBottomOf="@id/passwordInputFieldLayout" />
 
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminateTint="@color/ui_red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/registerBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton"
+        tools:visibility="visible" />
+
     <View
         android:id="@+id/registerBackground"
         android:layout_width="match_parent"
@@ -79,15 +91,15 @@
 
     <TextView
         android:id="@+id/registerHelpText"
+        style="@style/TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextButton"
         android:text="@string/login_register_help"
+        app:layout_constraintBottom_toBottomOf="@id/registerBackground"
+        app:layout_constraintEnd_toStartOf="@id/registerButton"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/registerButton"
-        app:layout_constraintTop_toTopOf="@id/registerBackground"
-        app:layout_constraintBottom_toBottomOf="@id/registerBackground" />
+        app:layout_constraintTop_toTopOf="@id/registerBackground" />
 
     <Button
         android:id="@+id/registerButton"
@@ -98,9 +110,9 @@
         android:paddingTop="0dp"
         android:text="@string/login_register_button"
         android:textColor="@color/brand_red"
-        app:layout_constraintStart_toEndOf="@id/registerHelpText"
+        app:layout_constraintBottom_toBottomOf="@id/registerBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/registerBackground"
-        app:layout_constraintBottom_toBottomOf="@id/registerBackground" />
+        app:layout_constraintStart_toEndOf="@id/registerHelpText"
+        app:layout_constraintTop_toTopOf="@id/registerBackground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

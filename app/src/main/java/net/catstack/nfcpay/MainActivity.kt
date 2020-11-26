@@ -48,9 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (!accountRepository.isUserAuthorized()) {
-            navController.navigate(MobileNavigationDirections.actionGlobalLoginFragment())
-        }
+        navController.navigate(MobileNavigationDirections.actionGlobalLoginFragment())
     }
 
     fun hideBottomNavigation() {
@@ -67,5 +65,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        accountRepository.clearToken()
     }
 }

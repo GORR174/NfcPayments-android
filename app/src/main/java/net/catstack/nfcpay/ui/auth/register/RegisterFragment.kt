@@ -1,4 +1,4 @@
-package net.catstack.nfcpay.ui.register
+package net.catstack.nfcpay.ui.auth.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
