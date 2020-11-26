@@ -19,9 +19,31 @@ class AccountRepository(
                 .apply()
         }
 
+    var email: String?
+        get() = sharedPreferences.getString(::email.name, null)
+        set(value) {
+            sharedPreferences.edit()
+                .putString(::email.name, value)
+                .apply()
+        }
+
+    var password: String?
+        get() = sharedPreferences.getString(::password.name, null)
+        set(value) {
+            sharedPreferences.edit()
+                .putString(::password.name, value)
+                .apply()
+        }
+
     fun isUserAuthorized() = userToken != null
 
+    fun clearToken() {
+        userToken = null
+    }
+
     fun logout() {
-        sharedPreferences.edit().putString(::userToken.name, null).apply()
+        userToken = null
+        email = null
+        password = null
     }
 }

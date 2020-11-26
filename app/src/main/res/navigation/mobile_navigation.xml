@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_payment" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="net.catstack.nfcpay.ui.login.LoginFragment"
+        android:name="net.catstack.nfcpay.ui.auth.login.LoginFragment"
         android:label="@string/title_login"
         tools:layout="@layout/login_fragment">
         <action
@@ -41,7 +41,7 @@
         app:destination="@id/loginFragment" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="net.catstack.nfcpay.ui.register.RegisterFragment"
+        android:name="net.catstack.nfcpay.ui.auth.register.RegisterFragment"
         android:label="@string/title_register"
         tools:layout="@layout/register_fragment">
         <action
