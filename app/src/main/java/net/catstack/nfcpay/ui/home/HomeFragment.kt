@@ -8,9 +8,11 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_company_layout.view.*
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
+import net.catstack.nfcpay.adapters.HomeNewsRecyclerAdapter
 import net.catstack.nfcpay.adapters.PaymentPatternsRecyclerAdapter
 import net.catstack.nfcpay.common.BaseFragment
 import net.catstack.nfcpay.common.HorizontalMarginDecoration
+import net.catstack.nfcpay.domain.HomeNewsModel
 import net.catstack.nfcpay.domain.PaymentPatternModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,6 +53,27 @@ class HomeFragment : BaseFragment(true, R.color.background) {
             patterns.size
         ))
         patternsRecyclerView.adapter = PaymentPatternsRecyclerAdapter(patterns) {
+            println(it.name)
+        }
+
+        val news = listOf(
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Бесконтактная оплата проще", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Бесконтактная оплата проще", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+        )
+
+        newsRecyclerView.adapter = HomeNewsRecyclerAdapter(news) {
             println(it.name)
         }
     }

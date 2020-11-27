@@ -72,6 +72,10 @@ dependencies {
     // Logging interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:4.5.0")
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     // Tests
     testImplementation 'junit:junit:4.13.1'
     testImplementation "org.koin:koin-test:2.1.6"
