@@ -24,4 +24,7 @@
     <string name="register_inn_hint">0000000000</string>
     <string name="button_register">Отправить заявку</string>
     <string name="register_info">После заполнения заявки с вами свяжется\nменеджер для уточнения деталей подключения.</string>
+
+    <string name="home_balance_text">Баланс</string>
+    <string name="home_payment_patterns_text">Шаблоны оплаты</string>
 </resources>

@@ -13,6 +13,7 @@
 
     <color name="ui_red">#F15045</color>
     <color name="brand_red">#EF3124</color>
+    <color name="primary">#0B1F35</color>
     <color name="secondary">#6D7986</color>
     <color name="bottom_navigation_item">#B6BCC3</color>
 </resources>
