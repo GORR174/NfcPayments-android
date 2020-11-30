@@ -3,6 +3,7 @@ package net.catstack.nfcpay.data.network
 import net.catstack.nfcpay.common.server.Responses
 import net.catstack.nfcpay.common.server.call
 import net.catstack.nfcpay.data.network.api.NfcPaymentApi
+import net.catstack.nfcpay.domain.network.request.ApplicationRequest
 import net.catstack.nfcpay.domain.network.request.DeviceInfo
 import net.catstack.nfcpay.domain.network.request.LoginRequest
 import net.catstack.nfcpay.domain.network.response.TokenResponseModel
@@ -13,5 +14,10 @@ class AuthRepository(private val nfcPaymentApi: NfcPaymentApi) {
         val deviceInfo = DeviceInfo("123", "DEVICE_TYPE_ANDROID")
         val request = LoginRequest(email, password, deviceInfo)
         return call { nfcPaymentApi.login(request) }
+    }
+
+    suspend fun register(name: String, phone: String, email: String, inn: Long): Responses<String> {
+        val request = ApplicationRequest(name, phone, email, inn)
+        return call { nfcPaymentApi.sendApplication(request) }
     }
 }
