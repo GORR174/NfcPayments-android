@@ -26,6 +26,7 @@
         <EditText
             android:id="@+id/nameInputField"
             style="@style/AuthInputFiled"
+            android:inputType="textPersonName"
             android:hint="@string/register_name_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,6 +50,7 @@
         <EditText
             android:id="@+id/phoneInputField"
             style="@style/AuthInputFiled"
+            android:inputType="phone"
             android:hint="@string/register_phone_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +74,7 @@
         <EditText
             android:id="@+id/emailInputField"
             style="@style/AuthInputFiled"
+            android:inputType="textEmailAddress"
             android:hint="@string/register_email_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,6 +98,10 @@
         <EditText
             android:id="@+id/innInputField"
             style="@style/AuthInputFiled"
+            android:inputType="number"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:digits="0123456789"
             android:hint="@string/register_inn_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,6 +115,18 @@
         app:layout_constraintStart_toStartOf="@id/innInputFieldLayout"
         app:layout_constraintTop_toBottomOf="@id/innInputFieldLayout"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:indeterminateTint="@color/background"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/registerButton"
+        app:layout_constraintEnd_toEndOf="@id/registerButton"
+        app:layout_constraintTop_toTopOf="@id/registerButton"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/registerInfoText"

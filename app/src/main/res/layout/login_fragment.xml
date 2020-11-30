@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.login.LoginFragment">
-    <!-- TODO: Fix fields (set email singleline and handle enter in password field) -->
 
     <ImageView
         android:id="@+id/logo"
@@ -30,6 +29,7 @@
         <EditText
             android:id="@+id/emailInputField"
             style="@style/AuthInputFiled"
+            android:inputType="textEmailAddress"
             android:hint="@string/login_email_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
