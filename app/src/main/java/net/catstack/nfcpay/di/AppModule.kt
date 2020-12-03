@@ -1,7 +1,6 @@
 package net.catstack.nfcpay.di
 
 import com.google.gson.GsonBuilder
-import net.catstack.nfcpay.data.network.AuthRepository
 import net.catstack.nfcpay.ui.history.HistoryViewModel
 import net.catstack.nfcpay.ui.home.HomeViewModel
 import net.catstack.nfcpay.ui.auth.login.LoginViewModel
@@ -13,11 +12,9 @@ import org.koin.dsl.module
 val appModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { RegisterViewModel(get()) }
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
     viewModel { HistoryViewModel() }
     viewModel { PaymentViewModel(get()) }
-
-    single { AuthRepository(get()) }
 
     single {
         GsonBuilder()

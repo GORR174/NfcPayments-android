@@ -2,6 +2,7 @@ package net.catstack.nfcpay.data.local
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import net.catstack.nfcpay.domain.ProfileModel
 import net.catstack.nfcpay.domain.TokenModel
 
 class AccountRepository(
@@ -18,6 +19,8 @@ class AccountRepository(
                 .putString(::userToken.name, gson.toJson(value))
                 .apply()
         }
+
+    lateinit var profileModel: ProfileModel
 
     var email: String?
         get() = sharedPreferences.getString(::email.name, null)

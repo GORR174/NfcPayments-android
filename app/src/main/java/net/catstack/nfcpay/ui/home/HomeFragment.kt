@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_company_layout.view.*
 import net.catstack.nfcpay.MainActivity
@@ -12,13 +13,16 @@ import net.catstack.nfcpay.adapters.HomeNewsRecyclerAdapter
 import net.catstack.nfcpay.adapters.PaymentPatternsRecyclerAdapter
 import net.catstack.nfcpay.common.BaseFragment
 import net.catstack.nfcpay.common.HorizontalMarginDecoration
+import net.catstack.nfcpay.common.server.ResponseStatus
 import net.catstack.nfcpay.domain.HomeNewsModel
 import net.catstack.nfcpay.domain.PaymentPatternModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 class HomeFragment : BaseFragment(true, R.color.background) {
 
-    private val homeViewModel: HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -32,8 +36,38 @@ class HomeFragment : BaseFragment(true, R.color.background) {
         super.onActivityCreated(savedInstanceState)
         (requireActivity() as MainActivity).showBottomNavigation()
 
-        toolBar.companyName.text = "ИП “Барсук Банкуров“"
-        moneyBalance.text = "25 200,90 ₽"
+        viewModel.loadProfile()
+
+        viewModel.responseStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                is ResponseStatus.Successful -> {
+                    val company = it.response.company
+                    toolBar.companyName.text = company.companyName
+                    val balance = company.billBalance
+
+                    val firstBalance = DecimalFormat("###,###", DecimalFormatSymbols().apply {
+                        groupingSeparator = ' '
+                    }).format(balance)
+                    val secondBalance =
+                        (((balance * 100) - balance.toLong() * 100)).toLong().toString()
+                            .padEnd(2, '0')
+                    // TODO: 03.12.2020 use string resource
+                    moneyBalance.text = "$firstBalance,$secondBalance ₽"
+                }
+                is ResponseStatus.ServerError -> Toast.makeText(
+                    requireContext(),
+                    it.error.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+                is ResponseStatus.InternetError -> Toast.makeText(
+                    requireContext(),
+                    "Ошибка с интернет соединением",
+                    Toast.LENGTH_SHORT
+                ).show()
+                is ResponseStatus.Default -> {}
+                is ResponseStatus.Loading -> {}
+            }
+        }
 
         val patterns = listOf(
             PaymentPatternModel(R.color.background, "Создать шаблон"),

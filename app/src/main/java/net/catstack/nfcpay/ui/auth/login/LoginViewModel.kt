@@ -10,6 +10,7 @@ import net.catstack.nfcpay.common.server.ResponseStatus
 import net.catstack.nfcpay.common.server.toResponseStatus
 import net.catstack.nfcpay.data.local.AccountRepository
 import net.catstack.nfcpay.data.network.AuthRepository
+import net.catstack.nfcpay.domain.TokenModel
 import net.catstack.nfcpay.domain.network.response.TokenResponseModel
 
 // TODO: 27.11.2020 Refactor responseStatus
@@ -37,6 +38,7 @@ class LoginViewModel(
         if (responseStatus is ResponseStatus.Successful) {
             accountRepository.email = email
             accountRepository.password = password
+            accountRepository.userToken = TokenModel(responseStatus.response.token)
         }
         mutableResponseStatus.postValue(responseStatus)
         mutableIsLoading.postValue(false)
