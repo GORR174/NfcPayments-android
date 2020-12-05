@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.login_fragment.*
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
-import net.catstack.nfcpay.common.server.ResponseStatus
+import net.catstack.nfcpay.common.server.Result
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment(true) {
@@ -34,29 +34,26 @@ class LoginFragment : BaseFragment(true) {
         emailInputField.setText(viewModel.savedEmail ?: "")
         passwordInputField.setText(viewModel.savedPassword ?: "")
 
-        viewModel.responseStatus.observe(viewLifecycleOwner) {
+        viewModel.loginResult.observe(viewLifecycleOwner) {
             when (it) {
-                is ResponseStatus.Successful -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
-                is ResponseStatus.ServerError -> Toast.makeText(
-                    requireContext(),
-                    "Неправильный логин или пароль",
-                    Toast.LENGTH_SHORT
-                ).show()
-                is ResponseStatus.InternetError -> Toast.makeText(
-                    requireContext(),
-                    "Ошибка с интернет соединением",
-                    Toast.LENGTH_SHORT
-                ).show()
-                is ResponseStatus.Default -> println("DEFAULT")
-                is ResponseStatus.Loading -> println("LOADING")
-            }
-        }
-
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            if (it) {
-                loadingProgressBar.visibility = View.VISIBLE
-            } else {
-                loadingProgressBar.visibility = View.GONE
+                Result.Loading -> loadingProgressBar.visibility = View.VISIBLE
+                is Result.Success -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
+                is Result.ServerError -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Неправильный логин или пароль",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    loadingProgressBar.visibility = View.GONE
+                }
+                Result.InternetError -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Ошибка с интернет соединением",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    loadingProgressBar.visibility = View.GONE
+                }
             }
         }
 

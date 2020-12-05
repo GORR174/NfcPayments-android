@@ -5,33 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import net.catstack.nfcpay.common.server.ResponseStatus
-import net.catstack.nfcpay.common.server.ServerErrorModel
-import net.catstack.nfcpay.common.server.toResponseStatus
-import net.catstack.nfcpay.data.local.AccountRepository
+import net.catstack.nfcpay.common.server.Result
+import net.catstack.nfcpay.common.server.postToLiveData
 import net.catstack.nfcpay.data.network.AuthRepository
-import net.catstack.nfcpay.domain.TokenModel
-import net.catstack.nfcpay.domain.network.response.TokenResponseModel
 import okhttp3.internal.toLongOrDefault
-import kotlin.random.Random
 
 class RegisterViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
-    private val mutableResponseStatus: MutableLiveData<ResponseStatus<String>> = MutableLiveData(ResponseStatus.Default())
-    val responseStatus: LiveData<ResponseStatus<String>>
-        get() = mutableResponseStatus
-
-    private val mutableIsLoading: MutableLiveData<Boolean> = MutableLiveData(false)
-    val isLoading: LiveData<Boolean>
-        get() = mutableIsLoading
+    private val _registerResult: MutableLiveData<Result<String>> = MutableLiveData()
+    val registerResult: LiveData<Result<String>>
+        get() = _registerResult
 
     fun register(name: String, phone: String, email: String, inn: String)  = viewModelScope.launch(Dispatchers.IO) {
         val replacedPhone = phone.replace("-", "").replace(" ", "")
-        mutableIsLoading.postValue(true)
-        mutableResponseStatus.postValue(ResponseStatus.Loading())
-        val responseStatus = authRepository.register(name, replacedPhone, email, inn.toLongOrDefault(0)).toResponseStatus()
-        mutableResponseStatus.postValue(responseStatus)
-        mutableIsLoading.postValue(false)
+        authRepository.register(name, replacedPhone, email, inn.toLongOrDefault(0))
+            .postToLiveData(_registerResult)
+            .collect { _registerResult.postValue(it) }
     }
 }

@@ -1,7 +1,12 @@
 package net.catstack.nfcpay.data.network
 
-import net.catstack.nfcpay.common.server.Responses
-import net.catstack.nfcpay.common.server.call
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import net.catstack.nfcpay.common.server.Result
+import net.catstack.nfcpay.common.server.getResult
 import net.catstack.nfcpay.data.local.AccountRepository
 import net.catstack.nfcpay.data.network.api.NfcPaymentApi
 import net.catstack.nfcpay.domain.ProfileModel
@@ -10,18 +15,17 @@ class ProfileRepository(
     private val nfcPaymentApi: NfcPaymentApi,
     private val accountRepository: AccountRepository
 ) {
-    suspend fun getMyProfile(): Responses<ProfileModel> {
+    suspend fun getMyProfile(): Flow<Result<ProfileModel>> = flow {
         val response =
-            call { nfcPaymentApi.getMyProfile("Bearer " + accountRepository.userToken?.accessToken) }
+            nfcPaymentApi.getMyProfile("Bearer " + accountRepository.userToken?.accessToken)
 
-        return when (response) {
-            is Responses.Successful -> {
-                val profileModel = response.response.toProfileModel()
-                accountRepository.profileModel = profileModel
-                return Responses.Successful(profileModel)
+        emit(response.getResult())
+    }.flowOn(Dispatchers.IO)
+        .map {
+            if (it is Result.Success) {
+                return@map Result.Success(it.data.toProfileModel())
+            } else {
+                return@map it as Result<ProfileModel>
             }
-            is Responses.ServerError -> Responses.ServerError(response.error)
-            is Responses.InternetError -> Responses.InternetError()
         }
-    }
 }

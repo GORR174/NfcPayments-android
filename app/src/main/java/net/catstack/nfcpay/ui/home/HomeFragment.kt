@@ -12,8 +12,8 @@ import net.catstack.nfcpay.R
 import net.catstack.nfcpay.adapters.HomeNewsRecyclerAdapter
 import net.catstack.nfcpay.adapters.PaymentPatternsRecyclerAdapter
 import net.catstack.nfcpay.common.BaseFragment
-import net.catstack.nfcpay.common.HorizontalMarginDecoration
-import net.catstack.nfcpay.common.server.ResponseStatus
+import net.catstack.nfcpay.common.decorations.HorizontalMarginDecoration
+import net.catstack.nfcpay.common.server.Result
 import net.catstack.nfcpay.domain.HomeNewsModel
 import net.catstack.nfcpay.domain.PaymentPatternModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,9 +25,9 @@ class HomeFragment : BaseFragment(true, R.color.background) {
     private val viewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -38,10 +38,12 @@ class HomeFragment : BaseFragment(true, R.color.background) {
 
         viewModel.loadProfile()
 
-        viewModel.responseStatus.observe(viewLifecycleOwner) {
+        viewModel.profileResult.observe(viewLifecycleOwner) {
             when (it) {
-                is ResponseStatus.Successful -> {
-                    val company = it.response.company
+                Result.Loading -> {
+                }
+                is Result.Success -> {
+                    val company = it.data.company
                     toolBar.companyName.text = company.companyName
                     val balance = company.billBalance
 
@@ -54,18 +56,16 @@ class HomeFragment : BaseFragment(true, R.color.background) {
                     // TODO: 03.12.2020 use string resource
                     moneyBalance.text = "$firstBalance,$secondBalance ₽"
                 }
-                is ResponseStatus.ServerError -> Toast.makeText(
+                is Result.ServerError -> Toast.makeText(
                     requireContext(),
-                    it.error.message,
+                    it.serverError.message,
                     Toast.LENGTH_SHORT
                 ).show()
-                is ResponseStatus.InternetError -> Toast.makeText(
+                Result.InternetError -> Toast.makeText(
                     requireContext(),
                     "Ошибка с интернет соединением",
                     Toast.LENGTH_SHORT
                 ).show()
-                is ResponseStatus.Default -> {}
-                is ResponseStatus.Loading -> {}
             }
         }
 
@@ -81,30 +81,88 @@ class HomeFragment : BaseFragment(true, R.color.background) {
             PaymentPatternModel(R.color.background, "Кекс"),
         )
 
-        patternsRecyclerView.addItemDecoration(HorizontalMarginDecoration(
-            resources.getDimension(R.dimen.recycler_margin).toInt(),
-            resources.getDimension(R.dimen.recycler_spacing).toInt() / 2,
-            patterns.size
-        ))
+        patternsRecyclerView.addItemDecoration(
+            HorizontalMarginDecoration(
+                resources.getDimension(R.dimen.recycler_margin).toInt(),
+                resources.getDimension(R.dimen.recycler_spacing).toInt() / 2,
+                patterns.size
+            )
+        )
         patternsRecyclerView.adapter = PaymentPatternsRecyclerAdapter(patterns) {
             println(it.name)
         }
 
         val news = listOf(
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Бесконтактная оплата проще", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Бесконтактная оплата проще", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
-            HomeNewsModel("https://www.catstack.net/img/alphapay/news1_image.png", "Тест", "Подробнее"),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Бесконтактная оплата проще",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Бесконтактная оплата проще",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
+            HomeNewsModel(
+                "https://www.catstack.net/img/alphapay/news1_image.png",
+                "Тест",
+                "Подробнее"
+            ),
         )
 
         newsRecyclerView.adapter = HomeNewsRecyclerAdapter(news) {

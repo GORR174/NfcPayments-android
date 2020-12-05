@@ -1,4 +1,4 @@
-package net.catstack.nfcpay.common
+package net.catstack.nfcpay.common.decorations
 
 import android.graphics.Rect
 import android.view.View

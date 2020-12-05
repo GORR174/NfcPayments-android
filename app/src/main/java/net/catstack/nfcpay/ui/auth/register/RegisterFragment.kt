@@ -1,20 +1,17 @@
 package net.catstack.nfcpay.ui.auth.register
 
 import android.os.Bundle
-import android.os.LocaleList
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doBeforeTextChanged
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.register_fragment.*
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
-import net.catstack.nfcpay.common.server.ResponseStatus
-import net.catstack.nfcpay.ui.auth.login.LoginFragmentDirections
+import net.catstack.nfcpay.common.server.Result
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterFragment : BaseFragment() {
@@ -38,7 +35,6 @@ class RegisterFragment : BaseFragment() {
             }
         }
         phoneInputField.setOnFocusChangeListener { v, hasFocus ->
-            println("ASD DA DA DA")
             if (hasFocus) {
                 if (phoneInputField.text.toString().isBlank()) {
                     phoneInputField.setText("+7")
@@ -47,25 +43,28 @@ class RegisterFragment : BaseFragment() {
             }
         }
 
-        viewModel.responseStatus.observe(viewLifecycleOwner) {
-            if (it is ResponseStatus.Loading) {
-                loadingProgressBar.visibility = View.VISIBLE
-            } else {
+        viewModel.registerResult.observe(viewLifecycleOwner) {
+            if (it !is Result.Loading) {
                 loadingProgressBar.visibility = View.GONE
             }
 
             when (it) {
-                is ResponseStatus.Successful -> Toast.makeText(
+                Result.Loading -> loadingProgressBar.visibility = View.VISIBLE
+                is Result.Success -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Вы успешно отправили заявку. Мы с вами свяжемся",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    findNavController().popBackStack()
+                }
+                is Result.ServerError -> Toast.makeText(
                     requireContext(),
-                    "SUCCESSFUL",
-                    Toast.LENGTH_SHORT
-                ).show().also { findNavController().popBackStack() }
-                is ResponseStatus.ServerError -> Toast.makeText(
-                    requireContext(),
-                    it.error.message,
+                    it.serverError.message,
                     Toast.LENGTH_SHORT
                 ).show()
-                is ResponseStatus.InternetError -> Toast.makeText(
+                Result.InternetError -> Toast.makeText(
                     requireContext(),
                     "Ошибка с интернет соединением",
                     Toast.LENGTH_SHORT
