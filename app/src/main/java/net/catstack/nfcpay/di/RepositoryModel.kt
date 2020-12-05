@@ -11,7 +11,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single { AccountRepository(get(), get(named("account"))) }
 
-    single { AuthRepository(get()) }
+    single { AuthRepository(get(), get()) }
     single { ProfileRepository(get(), get()) }
 
     single(named("account")) { androidContext().getSharedPreferences("account", Context.MODE_PRIVATE) }

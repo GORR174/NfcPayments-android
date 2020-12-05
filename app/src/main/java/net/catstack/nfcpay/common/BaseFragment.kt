@@ -1,6 +1,7 @@
 package net.catstack.nfcpay.common
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
@@ -18,5 +19,13 @@ abstract class BaseFragment(val isToolbarShouldBeHidden: Boolean = false, val st
         }
 
         activity.window.statusBarColor = resources.getColor(statusBarColor, null)
+    }
+
+    fun onInternetError() {
+        Toast.makeText(
+            requireContext(),
+            resources.getString(R.string.internet_error_toast),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

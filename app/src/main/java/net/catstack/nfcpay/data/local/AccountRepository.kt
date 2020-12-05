@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import net.catstack.nfcpay.domain.ProfileModel
 import net.catstack.nfcpay.domain.TokenModel
+import net.catstack.nfcpay.domain.network.request.DeviceInfo
 
 class AccountRepository(
     private val gson: Gson,
@@ -21,6 +22,8 @@ class AccountRepository(
         }
 
     lateinit var profileModel: ProfileModel
+
+    lateinit var deviceInfo: DeviceInfo
 
     var email: String?
         get() = sharedPreferences.getString(::email.name, null)

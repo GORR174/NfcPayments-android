@@ -35,25 +35,18 @@ class LoginFragment : BaseFragment(true) {
         passwordInputField.setText(viewModel.savedPassword ?: "")
 
         viewModel.loginResult.observe(viewLifecycleOwner) {
+            if (it !is Result.Loading) {
+                loadingProgressBar.visibility = View.GONE
+            }
             when (it) {
                 Result.Loading -> loadingProgressBar.visibility = View.VISIBLE
                 is Result.Success -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavigationHome())
-                is Result.ServerError -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Неправильный логин или пароль",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    loadingProgressBar.visibility = View.GONE
-                }
-                Result.InternetError -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Ошибка с интернет соединением",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    loadingProgressBar.visibility = View.GONE
-                }
+                is Result.ServerError -> Toast.makeText(
+                    requireContext(),
+                    resources.getString(R.string.login_wrong_logpass),
+                    Toast.LENGTH_SHORT
+                ).show()
+                Result.InternetError -> onInternetError()
             }
         }
 

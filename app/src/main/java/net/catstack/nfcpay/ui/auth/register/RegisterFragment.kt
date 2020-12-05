@@ -53,7 +53,7 @@ class RegisterFragment : BaseFragment() {
                 is Result.Success -> {
                     Toast.makeText(
                         requireContext(),
-                        "Вы успешно отправили заявку. Мы с вами свяжемся",
+                        resources.getString(R.string.register_successful),
                         Toast.LENGTH_LONG
                     ).show()
 
@@ -64,11 +64,7 @@ class RegisterFragment : BaseFragment() {
                     it.serverError.message,
                     Toast.LENGTH_SHORT
                 ).show()
-                Result.InternetError -> Toast.makeText(
-                    requireContext(),
-                    "Ошибка с интернет соединением",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Result.InternetError -> onInternetError()
             }
         }
 

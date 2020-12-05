@@ -1,6 +1,7 @@
 package net.catstack.nfcpay
 
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import net.catstack.nfcpay.data.local.AccountRepository
+import net.catstack.nfcpay.domain.network.request.DeviceInfo
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        accountRepository.deviceInfo = DeviceInfo(deviceId, "DEVICE_TYPE_ANDROID")
 
         setSupportActionBar(toolBar)
         toolBar.backButton.setOnClickListener { navController.popBackStack() }

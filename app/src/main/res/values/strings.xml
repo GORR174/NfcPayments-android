@@ -13,6 +13,7 @@
     <string name="login_button_forgot_password">Забыли пароль?</string>
     <string name="login_register_help">Ещё нет аккаунта?</string>
     <string name="login_register_button">Регистрация</string>
+    <string name="login_wrong_logpass">Неправильный логин или пароль</string>
 
     <string name="register_name_title">Имя</string>
     <string name="register_name_hint">Иван</string>
@@ -24,7 +25,11 @@
     <string name="register_inn_hint">0000000000</string>
     <string name="button_register">Отправить заявку</string>
     <string name="register_info">После заполнения заявки с вами свяжется\nменеджер для уточнения деталей подключения.</string>
+    <string name="register_successful">Вы успешно отправили заявку. Мы с вами свяжемся</string>
 
     <string name="home_balance_text">Баланс</string>
+    <string name="home_balance">%1$s,%2$s ₽</string>
     <string name="home_payment_patterns_text">Шаблоны оплаты</string>
+
+    <string name="internet_error_toast">Ошибка с интернет соединением</string>
 </resources>
