@@ -25,4 +25,7 @@ fun <T : Any> ServerResponse<T>.getResult(): Result<T> {
 
 fun <T : Any> Flow<Result<T>>.postToLiveData(liveData: MutableLiveData<Result<T>>) =
     this.onStart { liveData.postValue(Result.Loading) }
-        .catch { liveData.postValue(Result.InternetError) }
+        .catch {
+            liveData.postValue(Result.InternetError)
+            it.printStackTrace()
+        }

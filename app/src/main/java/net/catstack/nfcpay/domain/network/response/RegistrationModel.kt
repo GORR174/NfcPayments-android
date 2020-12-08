@@ -9,7 +9,7 @@ data class RegistrationCompanyModel(
     val companyName: String,
     val taxSystem: String,
     val address: String,
-    val kkt: String,
+    val kkt: Long,
     val bill: RegistrationCompanyBillModel
 )
 

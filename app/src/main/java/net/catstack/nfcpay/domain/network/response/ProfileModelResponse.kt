@@ -5,7 +5,6 @@ import net.catstack.nfcpay.domain.ProfileModel
 
 data class ProfileModelResponse(
     val id: Long,
-    val username: String,
     val firstName: String,
     val lastName: String,
     val patronymic: String,
@@ -16,7 +15,7 @@ data class ProfileModelResponse(
     fun toProfileModel(): ProfileModel {
         val company = registrations[0].company
         return ProfileModel(
-            id, username, firstName, lastName, patronymic, email, phone,
+            id, firstName, lastName, patronymic, email, phone,
             CompanyModel(
                 company.inn,
                 company.companyName,
