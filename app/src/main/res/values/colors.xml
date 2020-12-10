@@ -16,4 +16,5 @@
     <color name="primary">#0B1F35</color>
     <color name="secondary">#6D7986</color>
     <color name="bottom_navigation_item">#B6BCC3</color>
+    <color name="button_circle_disabled">#B6BCC3</color>
 </resources>

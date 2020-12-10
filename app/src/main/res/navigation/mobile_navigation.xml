@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_history" />
 
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_payment"
         android:name="net.catstack.nfcpay.ui.payment.PaymentFragment"
         android:label="@string/title_payment"
         tools:layout="@layout/fragment_payment" />
@@ -49,4 +49,12 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/mobile_navigation" />
     </fragment>
+    <fragment
+        android:id="@+id/createPaymentFragment"
+        android:name="net.catstack.nfcpay.ui.payment.CreatePaymentFragment"
+        android:label="create_payment_fragment"
+        tools:layout="@layout/create_payment_fragment" />
+    <action
+        android:id="@+id/action_global_createPaymentFragment"
+        app:destination="@id/createPaymentFragment" />
 </navigation>

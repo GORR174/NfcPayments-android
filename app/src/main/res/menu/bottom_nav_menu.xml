@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_payment_button"
         android:icon="@drawable/ic_payment"
         android:title="@string/title_payment" />
 

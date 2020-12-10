@@ -31,5 +31,12 @@
     <string name="home_balance">%1$s,%2$s ₽</string>
     <string name="home_payment_patterns_text">Шаблоны оплаты</string>
 
+    <string name="create_payment_title">Оплата</string>
+    <string name="create_payment_sum">Сумма</string>
+    <string name="create_payment_sum_hint">0</string>
+    <string name="create_payment_payment_method_title">Способ оплаты</string>
+    <string name="create_payment_payment_card_method">По карте</string>
+    <string name="create_payment_payment_qr_method">По QR коду</string>
+
     <string name="internet_error_toast">Ошибка с интернет соединением</string>
 </resources>

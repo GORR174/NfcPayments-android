@@ -6,6 +6,7 @@ import net.catstack.nfcpay.ui.home.HomeViewModel
 import net.catstack.nfcpay.ui.auth.login.LoginViewModel
 import net.catstack.nfcpay.ui.payment.PaymentViewModel
 import net.catstack.nfcpay.ui.auth.register.RegisterViewModel
+import net.catstack.nfcpay.ui.payment.CreatePaymentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -15,6 +16,7 @@ val appModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { HistoryViewModel() }
     viewModel { PaymentViewModel(get()) }
+    viewModel { CreatePaymentViewModel() }
 
     single {
         GsonBuilder()

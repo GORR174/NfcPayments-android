@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.payment.CreatePaymentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/background"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/circle_ripple"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/balanceText"
+            style="@style/DefaultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:text="@string/create_payment_title"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/backButton"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/background"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+        <TextView
+            android:id="@+id/sumText"
+            style="@style/DefaultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/home_horizontal_margin"
+            android:layout_marginTop="22dp"
+            android:text="@string/create_payment_sum"
+            android:textColor="@color/secondary"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sumInputFieldLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            app:boxStrokeColor="@color/input_stroke_color"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toStartOf="@id/nextButton"
+            app:layout_constraintStart_toStartOf="@id/sumText"
+            app:layout_constraintTop_toBottomOf="@id/sumText"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <EditText
+                android:id="@+id/sumInputField"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_margin="0dp"
+                android:background="@android:color/transparent"
+                android:digits="0123456789"
+                android:fontFamily="@font/roboto"
+                android:hint="@string/create_payment_sum_hint"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="0dp"
+                android:paddingStart="0dp"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/secondary"
+                android:textSize="24sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/home_horizontal_margin"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/button_red_cicle"
+            android:src="@drawable/ic_next"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/sumInputFieldInvisibleText"
+            style="@style/DefaultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="0"
+            android:textColor="@color/secondary"
+            android:textSize="24sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@id/sumInputFieldLayout"
+            app:layout_constraintTop_toTopOf="@id/sumInputFieldLayout"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/rubles"
+            style="@style/DefaultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text=" ₽"
+            android:textColor="@color/primary"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/sumInputFieldLayout"
+            app:layout_constraintStart_toEndOf="@id/sumInputFieldInvisibleText"
+            app:layout_constraintTop_toTopOf="@id/sumInputFieldLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/paymentMethodText"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/create_payment_payment_method_title"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topLayout" />
+
+    <Button
+        android:id="@+id/cardMethodButton"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_method_selected"
+        android:fontFamily="@font/roboto_medium"
+        android:letterSpacing="0"
+        android:stateListAnimator="@null"
+        android:text="@string/create_payment_payment_card_method"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@id/qrMethodButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paymentMethodText" />
+
+    <Button
+        android:id="@+id/qrMethodButton"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_method_unselected"
+        android:fontFamily="@font/roboto_medium"
+        android:letterSpacing="0"
+        android:stateListAnimator="@null"
+        android:text="@string/create_payment_payment_qr_method"
+        android:textAllCaps="false"
+        android:textColor="@color/primary"
+        android:textSize="14sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cardMethodButton"
+        app:layout_constraintTop_toBottomOf="@id/paymentMethodText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
