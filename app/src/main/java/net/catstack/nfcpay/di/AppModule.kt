@@ -6,7 +6,7 @@ import net.catstack.nfcpay.ui.home.HomeViewModel
 import net.catstack.nfcpay.ui.auth.login.LoginViewModel
 import net.catstack.nfcpay.ui.payment.PaymentViewModel
 import net.catstack.nfcpay.ui.auth.register.RegisterViewModel
-import net.catstack.nfcpay.ui.payment.CreatePaymentViewModel
+import net.catstack.nfcpay.ui.payment.create.CreatePaymentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

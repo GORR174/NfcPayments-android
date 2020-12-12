@@ -1,5 +1,6 @@
-package net.catstack.nfcpay.ui.payment
+package net.catstack.nfcpay.ui.payment.create
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.create_payment_fragment.*
 import net.catstack.nfcpay.MainActivity
+import net.catstack.nfcpay.NfcActivity
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,6 +44,12 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
 
         nextButton.isEnabled = false
 
+        nextButton.setOnClickListener {
+            val intent = Intent(requireContext(), NfcActivity::class.java)
+            intent.putExtra("sum", sumInputField.text.toString().toInt())
+            startActivityForResult(intent, 1)
+        }
+
         cardMethodButton.setOnClickListener {
             cardMethodButton.setTextColor(resources.getColor(R.color.white, null))
             cardMethodButton.setBackgroundResource(R.drawable.button_method_selected)
@@ -59,8 +67,22 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1) {
+            if (data == null)
+                return
+
+            val isSuccessful = data.getBooleanExtra("isSuccessful", false)
+            if (isSuccessful) {
+                findNavController().navigate(CreatePaymentFragmentDirections.actionCreatePaymentFragmentToPaymentSuccessfulFragment())
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun onDestroy() {
-        super.onDestroy()
         (requireActivity() as MainActivity).showBottomNavigation()
+        super.onDestroy()
     }
 }

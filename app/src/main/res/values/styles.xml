@@ -12,6 +12,12 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="BackgroundButton" parent="RedButton">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
     <style name="TextButton">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:letterSpacing">0</item>

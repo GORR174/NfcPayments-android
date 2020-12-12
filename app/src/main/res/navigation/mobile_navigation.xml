@@ -51,10 +51,25 @@
     </fragment>
     <fragment
         android:id="@+id/createPaymentFragment"
-        android:name="net.catstack.nfcpay.ui.payment.CreatePaymentFragment"
+        android:name="net.catstack.nfcpay.ui.payment.create.CreatePaymentFragment"
         android:label="create_payment_fragment"
-        tools:layout="@layout/create_payment_fragment" />
+        tools:layout="@layout/create_payment_fragment" >
+        <action
+            android:id="@+id/action_createPaymentFragment_to_paymentSuccessfulFragment"
+            app:popUpTo="@id/navigation_home"
+            app:destination="@id/paymentSuccessfulFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_createPaymentFragment"
         app:destination="@id/createPaymentFragment" />
+    <fragment
+        android:id="@+id/paymentSuccessfulFragment"
+        android:name="net.catstack.nfcpay.ui.payment.successful.PaymentSuccessfulFragment"
+        android:label="payment_successful_fragment"
+        tools:layout="@layout/payment_successful_fragment" >
+        <action
+            android:id="@+id/action_paymentSuccessfulFragment_to_navigation_home"
+            app:popUpTo="@id/mobile_navigation"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

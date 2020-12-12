@@ -38,5 +38,12 @@
     <string name="create_payment_payment_card_method">По карте</string>
     <string name="create_payment_payment_qr_method">По QR коду</string>
 
+    <string name="nfc_activity_sum_text">Сумма:</string>
+    <string name="nfc_activity_button_cancel">Отменить</string>
+
+    <string name="payment_successful_text">Успешная оплата!</string>
+    <string name="payment_successful_thanks_text">Спасибо за покупку, хорошего дня</string>
+    <string name="payment_successful_button_back">Назад</string>
+
     <string name="internet_error_toast">Ошибка с интернет соединением</string>
 </resources>
