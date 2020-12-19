@@ -9,13 +9,11 @@ import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.create_payment_fragment.*
 import net.catstack.nfcpay.MainActivity
-import net.catstack.nfcpay.NfcActivity
+import net.catstack.nfcpay.ui.NfcActivity
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreatePaymentFragment : BaseFragment(true, R.color.background) {
-    private val viewModel: CreatePaymentViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +33,8 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
                 sumInputFieldInvisibleText.text = "0"
             }
 
-            nextButton.isEnabled = sumInputField.text.isNotBlank() && sumInputField.text.toString() != "0"
+            nextButton.isEnabled =
+                sumInputField.text.isNotBlank() && sumInputField.text.toString() != "0"
         }
 
         backButton.setOnClickListener {
@@ -74,7 +73,14 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
 
             val isSuccessful = data.getBooleanExtra("isSuccessful", false)
             if (isSuccessful) {
-                findNavController().navigate(CreatePaymentFragmentDirections.actionCreatePaymentFragmentToPaymentSuccessfulFragment())
+                val cardNumber = data.getLongExtra("cardNumber", 0)
+                findNavController().navigate(
+                    CreatePaymentFragmentDirections.actionCreatePaymentFragmentToPaymentResultFragment(
+                        cardNumber,
+                        sumInputField.text.toString().toFloat(),
+                        null
+                    )
+                )
             }
         }
 
