@@ -46,7 +46,6 @@ class LoginViewModel(
                         }
                         .collect {
                             if (it is Result.Success) {
-                                accountRepository.profileModel = it.data
                                 _loginResult.postValue(tokenResult)
                             } else if (it is Result.ServerError) {
                                 _loginResult.postValue(it)

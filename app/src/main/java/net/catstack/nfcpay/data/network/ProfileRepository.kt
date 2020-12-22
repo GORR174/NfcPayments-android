@@ -23,7 +23,11 @@ class ProfileRepository(
     }.flowOn(Dispatchers.IO)
         .map {
             if (it is Result.Success) {
-                return@map Result.Success(it.data.toProfileModel())
+                val profileModel = it.data.toProfileModel()
+
+                accountRepository.profileModel = profileModel
+
+                return@map Result.Success(profileModel)
             } else {
                 return@map it as Result<ProfileModel>
             }
