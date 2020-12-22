@@ -76,6 +76,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+    // Credit Card NFC Reqder
+    implementation 'com.github.pro100svitlo:creditCardNfcReader:1.0.3'
+    implementation 'com.github.TapCard.TapCard:android:master-SNAPSHOT'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
+
     // Tests
     testImplementation 'junit:junit:4.13.1'
     testImplementation "org.koin:koin-test:2.1.6"
