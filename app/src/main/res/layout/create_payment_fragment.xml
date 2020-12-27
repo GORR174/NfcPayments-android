@@ -180,4 +180,33 @@
         app:layout_constraintStart_toEndOf="@id/cardMethodButton"
         app:layout_constraintTop_toBottomOf="@id/paymentMethodText" />
 
+    <TextView
+        android:id="@+id/emailText"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="28dp"
+        android:text="E-mail для отправки чека (необязательно)"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardMethodButton" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailInputFieldLayout"
+        style="@style/AuthInputFiledLayout"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailText">
+
+        <EditText
+            android:id="@+id/emailInputField"
+            style="@style/AuthInputFiled"
+            android:inputType="textEmailAddress"
+            android:hint="@string/login_email_hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

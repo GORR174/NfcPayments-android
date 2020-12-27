@@ -64,7 +64,7 @@
         app:destination="@id/createPaymentFragment" />
     <fragment
         android:id="@+id/paymentResultFragment"
-        android:name="net.catstack.nfcpay.ui.payment.successful.PaymentResultFragment"
+        android:name="net.catstack.nfcpay.ui.payment.result.PaymentResultFragment"
         android:label="payment_result_fragment"
         tools:layout="@layout/payment_result_fragment" >
         <action

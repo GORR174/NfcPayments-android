@@ -74,11 +74,12 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
             val isSuccessful = data.getBooleanExtra("isSuccessful", false)
             if (isSuccessful) {
                 val cardNumber = data.getLongExtra("cardNumber", 0)
+                val email = if (emailInputField.text.isNotBlank()) emailInputField.text.toString() else null
                 findNavController().navigate(
                     CreatePaymentFragmentDirections.actionCreatePaymentFragmentToPaymentResultFragment(
                         cardNumber,
                         sumInputField.text.toString().toFloat(),
-                        null
+                        email
                     )
                 )
             }

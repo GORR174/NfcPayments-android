@@ -1,4 +1,4 @@
-package net.catstack.nfcpay.ui.payment.successful
+package net.catstack.nfcpay.ui.payment.result
 
 import android.os.Bundle
 import android.view.LayoutInflater

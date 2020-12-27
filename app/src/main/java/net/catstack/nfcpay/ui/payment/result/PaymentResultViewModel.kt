@@ -1,4 +1,4 @@
-package net.catstack.nfcpay.ui.payment.successful
+package net.catstack.nfcpay.ui.payment.result
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
