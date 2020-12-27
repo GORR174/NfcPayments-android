@@ -97,7 +97,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
             ?.subscribe(
                 {
                     try {
-                        val cardName = determineCardName(it)
+                        val cardName = determineCardName(it).replace(" ", "")
                         val cardNumber = it.cardNumber.replace(" ", "").toLongOrNull()
                         if (cardNumber == null) {
                             Toast.makeText(
