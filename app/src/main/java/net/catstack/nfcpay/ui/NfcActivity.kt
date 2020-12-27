@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.pro100svitlo.creditCardNfcReader.CardNfcAsyncTask
 import com.pro100svitlo.creditCardNfcReader.utils.CardNfcUtils
 import io.github.tapcard.android.NFCCardReader
+import io.github.tapcard.emvnfccard.model.EmvCard
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_nfc.*
@@ -40,7 +41,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
             val gestureDetector = GestureDetector(this@NfcActivity,
                 object : GestureDetector.SimpleOnGestureListener() {
                     override fun onDoubleTap(e: MotionEvent?): Boolean {
-                        returnCardInfo("VISA",4276160040462427L)
+                        returnCardInfo("VISA", 4276160040462427L)
                         return super.onDoubleTap(e)
                     }
                 })
@@ -96,7 +97,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
             ?.subscribe(
                 {
                     try {
-                        val cardName = it.type.getName()
+                        val cardName = determineCardName(it)
                         val cardNumber = it.cardNumber.replace(" ", "").toLongOrNull()
                         if (cardNumber == null) {
                             Toast.makeText(
@@ -107,7 +108,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
                             return@subscribe
                         }
 
-                        returnCardInfo(cardName, cardNumber)
+                        returnCardInfo(cardName.toString(), cardNumber)
                     } catch (exception: Exception) {
                         exception.printStackTrace()
                         Toast.makeText(
@@ -118,6 +119,13 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
                     }
                 }
             ) { throwable: Throwable? -> throwable?.printStackTrace() }
+    }
+
+    private fun determineCardName(card: EmvCard): String {
+        val mirAids = listOf("A0000006581010", "A0000006581011", "A0000006582010")
+        if (mirAids.contains(card.aid))
+            return "Mir"
+        return if (card.type != null) card.type.getName() else "Card"
     }
 
     override fun startNfcReadCard() {
