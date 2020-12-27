@@ -40,7 +40,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
             val gestureDetector = GestureDetector(this@NfcActivity,
                 object : GestureDetector.SimpleOnGestureListener() {
                     override fun onDoubleTap(e: MotionEvent?): Boolean {
-                        returnCardNumber(4276160040462427L)
+                        returnCardInfo("VISA",4276160040462427L)
                         return super.onDoubleTap(e)
                     }
                 })
@@ -60,9 +60,10 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
         }
     }
 
-    private fun returnCardNumber(cardNumber: Long) {
+    private fun returnCardInfo(cardName: String, cardNumber: Long) {
         val intent = Intent()
         intent.putExtra("isSuccessful", true)
+        intent.putExtra("cardName", cardName)
         intent.putExtra("cardNumber", cardNumber)
         setResult(RESULT_OK, intent)
         finish()
@@ -70,7 +71,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
 
     override fun onResume() {
         super.onResume()
-        mIntentFromCreate = false;
+        mIntentFromCreate = false
         if (mNfcAdapter != null && !mNfcAdapter?.isEnabled!!) {
             //show some turn on nfc dialog here
         } else if (mNfcAdapter != null) {
@@ -95,6 +96,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
             ?.subscribe(
                 {
                     try {
+                        val cardName = it.type.getName()
                         val cardNumber = it.cardNumber.replace(" ", "").toLongOrNull()
                         if (cardNumber == null) {
                             Toast.makeText(
@@ -105,7 +107,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
                             return@subscribe
                         }
 
-                        returnCardNumber(cardNumber)
+                        returnCardInfo(cardName, cardNumber)
                     } catch (exception: Exception) {
                         exception.printStackTrace()
                         Toast.makeText(
