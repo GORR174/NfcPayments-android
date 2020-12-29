@@ -14,9 +14,9 @@ class PaymentRepository(
     private val nfcPaymentApi: NfcPaymentApi,
     private val accountRepository: AccountRepository
 ) {
-    suspend fun createPayment(idempotenceKey: Long, cardNumber: Long, cost: Float, email: String?): Flow<Result<String>> = flow {
+    suspend fun createPayment(idempotenceKey: Long, cardName: String, cardNumber: Long, cost: Float, email: String?): Flow<Result<String>> = flow {
 
-        val title = "VISA ***${cardNumber % 10000}"
+        val title = "$cardName ***${cardNumber % 10000}"
 
         val response =
             nfcPaymentApi.createPayment(

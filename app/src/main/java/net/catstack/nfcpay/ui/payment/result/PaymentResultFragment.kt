@@ -32,7 +32,7 @@ class PaymentResultFragment : BaseFragment(true) {
 
         val args = PaymentResultFragmentArgs.fromBundle(requireArguments())
 
-        viewModel.pay(idempotenceKey, args.cardNumber, args.cost, args.email)
+        viewModel.pay(idempotenceKey, args.cardName, args.cardNumber, args.cost, args.email)
 
         viewModel.paymentResult.observe(viewLifecycleOwner) {
             if (it !is Result.Loading) {

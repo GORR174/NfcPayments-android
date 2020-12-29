@@ -18,8 +18,8 @@ class PaymentResultViewModel(
     val paymentResult: LiveData<Result<String>>
         get() = _paymentResult
 
-    fun pay(idempotenceKey: Long, cardNumber: Long, cost: Float, email: String?) = viewModelScope.launch(Dispatchers.IO) {
-        paymentRepository.createPayment(idempotenceKey, cardNumber, cost, email).postToLiveData(_paymentResult)
+    fun pay(idempotenceKey: Long, cardName: String, cardNumber: Long, cost: Float, email: String?) = viewModelScope.launch(Dispatchers.IO) {
+        paymentRepository.createPayment(idempotenceKey, cardName, cardNumber, cost, email).postToLiveData(_paymentResult)
             .collect { _paymentResult.postValue(it) }
     }
 }
