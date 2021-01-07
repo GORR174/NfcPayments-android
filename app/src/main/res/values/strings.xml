@@ -48,4 +48,11 @@
     <string name="internet_error_toast">Ошибка с интернет соединением</string>
 
     <string name="history_with_nfc">С помощью NFC</string>
+
+    <string name="history_payment_title">Информация о платеже</string>
+    <string name="history_payment_info">Подробности</string>
+    <string name="history_payment_card_title">Карта</string>
+    <string name="history_payment_date_title">Дата и время оплаты</string>
+    <string name="history_payment_type_title">Способ оплаты</string>
+    <string name="history_payment_save_button">Сохранить чек</string>
 </resources>
