@@ -27,4 +27,16 @@
             tools:listitem="@layout/history_item_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:indeterminateTint="@color/ui_red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
