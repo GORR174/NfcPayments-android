@@ -14,7 +14,7 @@ val appModule = module {
     viewModel { LoginViewModel(get(), get(), get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { HomeViewModel(get(), get()) }
-    viewModel { HistoryViewModel(get()) }
+    viewModel { HistoryViewModel(get(), get()) }
     viewModel { PaymentViewModel(get()) }
     viewModel { PaymentResultViewModel(get()) }
 

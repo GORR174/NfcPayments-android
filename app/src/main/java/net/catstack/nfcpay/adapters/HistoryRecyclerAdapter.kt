@@ -33,7 +33,7 @@ class HistoryRecyclerAdapter(
             onItemClickListener(currentItem)
         }
 
-        viewHolder.dateTextView.text = currentItem.date
+        viewHolder.dateTextView.text = currentItem.historyDate
         viewHolder.cardTitle.text = currentItem.title
         viewHolder.cardHelpText.text = viewHolder.parent.context.getString(R.string.history_with_nfc)
 
@@ -60,11 +60,11 @@ class HistoryRecyclerAdapter(
             }
         }
 
-        if (currentItem.date == currentDate) {
+        if (currentItem.historyDate == currentDate) {
             viewHolder.dateTextView.visibility = View.GONE
         } else {
             viewHolder.dateTextView.visibility = View.VISIBLE
-            currentDate = currentItem.date
+            currentDate = currentItem.historyDate
         }
     }
 

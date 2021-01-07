@@ -3,6 +3,7 @@ package net.catstack.nfcpay.di
 import android.content.Context
 import net.catstack.nfcpay.data.local.AccountRepository
 import net.catstack.nfcpay.data.network.AuthRepository
+import net.catstack.nfcpay.data.network.HistoryRepository
 import net.catstack.nfcpay.data.network.PaymentRepository
 import net.catstack.nfcpay.data.network.ProfileRepository
 import org.koin.android.ext.koin.androidContext
@@ -15,6 +16,7 @@ val repositoryModule = module {
     single { AuthRepository(get(), get()) }
     single { ProfileRepository(get(), get()) }
     single { PaymentRepository(get(), get()) }
+    single { HistoryRepository(get(), get()) }
 
     single(named("account")) { androidContext().getSharedPreferences("account", Context.MODE_PRIVATE) }
 }
