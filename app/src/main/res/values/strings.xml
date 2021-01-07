@@ -46,4 +46,6 @@
     <string name="payment_successful_button_back">Назад</string>
 
     <string name="internet_error_toast">Ошибка с интернет соединением</string>
+
+    <string name="history_with_nfc">С помощью NFC</string>
 </resources>
