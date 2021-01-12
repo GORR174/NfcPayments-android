@@ -40,7 +40,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="138dp"
+        android:layout_height="140dp"
         android:background="@color/background"
         app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
@@ -49,13 +49,32 @@
             style="@style/DefaultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/returnPaymentButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside"
             tools:text="1 000,00 ₽" />
+
+        <Button
+            android:id="@+id/returnPaymentButton"
+            style="@style/RedButton"
+            android:layout_width="156dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_return"
+            android:fontFamily="@font/roboto"
+            android:text="@string/history_payment_return_payment_button"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/costText"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,14 +217,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/saveButton"
         style="@style/RedButton"
-        android:layout_marginTop="60dp"
-        android:text="@string/history_payment_save_button"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="16dp"
+        android:text="@string/history_payment_save_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
