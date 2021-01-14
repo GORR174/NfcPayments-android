@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.payment_info_fragment.*
+import kotlinx.android.synthetic.main.payment_info_fragment.cardTypeImage
+import kotlinx.android.synthetic.main.payment_info_fragment.dateText
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.common.BaseFragment

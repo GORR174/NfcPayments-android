@@ -60,6 +60,15 @@ class HistoryRecyclerAdapter(
             }
         }
 
+        when (currentItem.status.toLowerCase()) {
+            "returned" -> {
+                viewHolder.paymentStatusImage.setImageResource(R.drawable.ic_payment_return)
+            }
+            "successfully" -> {
+                viewHolder.paymentStatusImage.setImageResource(R.drawable.ic_payment_okay)
+            }
+        }
+
         if (currentItem.historyDate == currentDate) {
             viewHolder.dateTextView.visibility = View.GONE
         } else {
@@ -71,6 +80,7 @@ class HistoryRecyclerAdapter(
     class ViewHolder(itemView: View, val parent: ViewGroup) : RecyclerView.ViewHolder(itemView) {
         val dateTextView = itemView.dateText!!
         val cardTypeImage = itemView.cardTypeImage!!
+        val paymentStatusImage = itemView.paymentStatusImage!!
         val cardTitle = itemView.cardTitle!!
         val cardHelpText = itemView.cardHelpText!!
         val incomeText = itemView.incomeText!!
