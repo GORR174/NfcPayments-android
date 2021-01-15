@@ -33,7 +33,7 @@ class HistoryRepository(
                         val date = getHistoryDateFormat(item.datetime)
                         val time = getHistoryDateAndTimeFormat(item.datetime)
 
-                        HistoryItemModel(item.title, item.cost, item.datetime, date, time)
+                        HistoryItemModel(item.title, item.paymentId, item.status, item.cost, item.datetime, date, time)
                     }
                 )
             } else {

@@ -56,4 +56,7 @@
     <string name="history_payment_type_title">Способ оплаты</string>
     <string name="history_payment_save_button">Сохранить чек</string>
     <string name="history_payment_return_payment_button">Вернуть платёж</string>
+
+    <string name="payment_return_successful_text">Возврат прошёл успешно!</string>
+    <string name="payment_return_thanks_text">Хорошего дня</string>
 </resources>

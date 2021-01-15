@@ -97,5 +97,25 @@
         <argument
             android:name="historyItemModel"
             app:argType="net.catstack.nfcpay.domain.HistoryItemModel" />
+        <action
+            android:id="@+id/action_paymentInfoFragment_to_paymentReturnResultFragment"
+            app:destination="@id/paymentReturnResultFragment"
+            app:popUpTo="@id/navigation_history" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentReturnResultFragment"
+        android:name="net.catstack.nfcpay.ui.history.paymentinfo.returnresult.PaymentReturnResultFragment"
+        android:label="payment_return_result_fragment"
+        tools:layout="@layout/payment_return_result_fragment" >
+        <argument
+            android:name="cardNumber"
+            app:argType="long" />
+        <argument
+            android:name="paymentId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_paymentReturnResultFragment_to_navigation_history"
+            app:destination="@id/navigation_history"
+            app:popUpTo="@id/navigation_home" />
     </fragment>
 </navigation>

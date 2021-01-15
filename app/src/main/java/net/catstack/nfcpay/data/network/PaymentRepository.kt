@@ -9,6 +9,7 @@ import net.catstack.nfcpay.common.server.getResult
 import net.catstack.nfcpay.data.local.AccountRepository
 import net.catstack.nfcpay.data.network.api.NfcPaymentApi
 import net.catstack.nfcpay.domain.network.request.PaymentRequest
+import net.catstack.nfcpay.domain.network.request.PaymentReturnRequest
 
 class PaymentRepository(
     private val nfcPaymentApi: NfcPaymentApi,
@@ -30,6 +31,21 @@ class PaymentRepository(
                     accountRepository.deviceInfo,
                     email,
                     title
+                )
+            )
+
+        emit(response.getResult())
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun returnPayment(paymentId: Long, cardNumber: Long): Flow<Result<String>> = flow {
+        val response =
+            nfcPaymentApi.returnPayment(
+                "Bearer " + accountRepository.userToken?.accessToken,
+                PaymentReturnRequest(
+                    paymentId,
+                    accountRepository.profileModel.company.inn,
+                    cardNumber,
+                    accountRepository.deviceInfo
                 )
             )
 

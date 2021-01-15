@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.history_item_view.view.*
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.domain.HistoryItemModel
+import net.catstack.nfcpay.domain.network.response.HistoryItemStatus
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
 class HistoryRecyclerAdapter(
-    private val historyItems: List<HistoryItemModel>,
+    historyItems: List<HistoryItemModel>,
     private val onItemClickListener: (HistoryItemModel) -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val historyItems = historyItems.filter { it.status == HistoryItemStatus.SUCCESSFULLY }
 
     private var currentDate: String? = null
 

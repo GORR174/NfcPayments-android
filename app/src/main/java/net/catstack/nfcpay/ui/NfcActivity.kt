@@ -33,6 +33,13 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
 
         sumValueText.text = intent.getIntExtra("sum", 0).toString() + " ₽"
 
+        val isReturn = intent.getBooleanExtra("isReturn", false)
+
+        if (isReturn) {
+            sumValueText.visibility = View.GONE
+            sumText.visibility = View.GONE
+        }
+
         cancelButton.setOnClickListener {
             finish()
         }
@@ -108,7 +115,7 @@ class NfcActivity : AppCompatActivity(), CardNfcAsyncTask.CardNfcInterface {
                             return@subscribe
                         }
 
-                        returnCardInfo(cardName.toString(), cardNumber)
+                        returnCardInfo(cardName, cardNumber)
                     } catch (exception: Exception) {
                         exception.printStackTrace()
                         Toast.makeText(

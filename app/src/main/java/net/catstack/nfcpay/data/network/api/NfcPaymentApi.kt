@@ -5,6 +5,7 @@ import net.catstack.nfcpay.domain.network.request.ApplicationRequest
 import net.catstack.nfcpay.domain.network.response.TokenResponseModel
 import net.catstack.nfcpay.domain.network.request.LoginRequest
 import net.catstack.nfcpay.domain.network.request.PaymentRequest
+import net.catstack.nfcpay.domain.network.request.PaymentReturnRequest
 import net.catstack.nfcpay.domain.network.response.HistoryItemResponse
 import net.catstack.nfcpay.domain.network.response.ProfileModelResponse
 import retrofit2.http.*
@@ -23,6 +24,12 @@ interface NfcPaymentApi {
     suspend fun createPayment(
         @Header("Authorization") auth: String,
         @Body paymentRequest: PaymentRequest
+    ): ServerResponse<String>
+
+    @POST("/nfc-api/payment/return")
+    suspend fun returnPayment(
+        @Header("Authorization") auth: String,
+        @Body paymentReturnRequest: PaymentReturnRequest
     ): ServerResponse<String>
 
     @GET("/nfc-api/history/get")
