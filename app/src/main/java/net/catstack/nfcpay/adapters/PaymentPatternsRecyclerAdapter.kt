@@ -1,6 +1,5 @@
 package net.catstack.nfcpay.adapters
 
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,8 @@ class PaymentPatternsRecyclerAdapter(
         val viewHolder = holder as ViewHolder
 
         val pattern = patterns[position]
+
+        viewHolder.patternImage.setImageResource(pattern.imageResource)
 
         viewHolder.itemView.setOnClickListener {
             viewHolder.patternImage.animate()
