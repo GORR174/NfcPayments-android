@@ -29,4 +29,8 @@ class HomeViewModel(
         profileRepository.getMyProfile().postToLiveData(_profileResult)
             .collect { _profileResult.postValue(it) }
     }
+
+    fun logout() {
+        accountRepository.logout()
+    }
 }

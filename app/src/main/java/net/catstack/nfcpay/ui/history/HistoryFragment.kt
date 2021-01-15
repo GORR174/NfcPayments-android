@@ -33,7 +33,7 @@ class HistoryFragment : BaseFragment(true, R.color.background) {
         super.onActivityCreated(savedInstanceState)
 
         toolBar.companyName.text = viewModel.profileModel.company.companyName
-        notificationIcon.visibility = View.GONE
+        logoutIcon.visibility = View.GONE
 
         viewModel.loadHistory()
 

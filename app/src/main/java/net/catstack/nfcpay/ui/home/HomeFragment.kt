@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.toolbar_company_layout.*
 import kotlinx.android.synthetic.main.toolbar_company_layout.view.*
 import net.catstack.nfcpay.MainActivity
 import net.catstack.nfcpay.R
@@ -17,6 +19,7 @@ import net.catstack.nfcpay.common.server.Result
 import net.catstack.nfcpay.domain.HomeNewsModel
 import net.catstack.nfcpay.domain.PaymentPatternModel
 import net.catstack.nfcpay.domain.ProfileModel
+import net.catstack.nfcpay.ui.payment.PaymentFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -40,6 +43,13 @@ class HomeFragment : BaseFragment(true, R.color.background) {
         loadProfile()
         loadPatterns()
         loadNews()
+
+        logoutIcon.setOnClickListener {
+            viewModel.logout()
+            findNavController().navigate(
+                PaymentFragmentDirections.actionGlobalLoginFragment()
+            )
+        }
     }
 
     private fun loadProfile() {
