@@ -77,7 +77,7 @@ class HomeFragment : BaseFragment(true, R.color.background) {
     private fun loadPatterns() {
         val patterns = listOf(
             PaymentPatternModel(R.drawable.image_pattern_create, "Создать шаблон"),
-            PaymentPatternModel(R.drawable.ic_pattern_latte, "Латте 200 мл"),
+            PaymentPatternModel(R.drawable.ic_pattern_latte, "Латте\n200 мл"),
             PaymentPatternModel(R.drawable.ic_pattern_donut, "Пончик с глазурью"),
             PaymentPatternModel(R.drawable.ic_pattern_americano, "Американо 150 мл"),
             PaymentPatternModel(R.drawable.ic_pattern_cake, "Пирожное"),
