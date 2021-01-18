@@ -4,7 +4,6 @@ import com.google.gson.GsonBuilder
 import net.catstack.nfcpay.ui.history.HistoryViewModel
 import net.catstack.nfcpay.ui.home.HomeViewModel
 import net.catstack.nfcpay.ui.auth.login.LoginViewModel
-import net.catstack.nfcpay.ui.payment.PaymentViewModel
 import net.catstack.nfcpay.ui.auth.register.RegisterViewModel
 import net.catstack.nfcpay.ui.history.paymentinfo.returnresult.PaymentReturnResultViewModel
 import net.catstack.nfcpay.ui.payment.result.PaymentResultViewModel
@@ -16,7 +15,6 @@ val appModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { HomeViewModel(get(), get()) }
     viewModel { HistoryViewModel(get(), get()) }
-    viewModel { PaymentViewModel(get()) }
     viewModel { PaymentResultViewModel(get()) }
     viewModel { PaymentReturnResultViewModel(get()) }
 

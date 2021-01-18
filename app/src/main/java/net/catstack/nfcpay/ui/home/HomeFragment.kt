@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.toolbar_company_layout.*
 import kotlinx.android.synthetic.main.toolbar_company_layout.view.*
 import net.catstack.nfcpay.MainActivity
+import net.catstack.nfcpay.MobileNavigationDirections
 import net.catstack.nfcpay.R
 import net.catstack.nfcpay.adapters.HomeNewsRecyclerAdapter
 import net.catstack.nfcpay.adapters.PaymentPatternsRecyclerAdapter
@@ -19,7 +20,6 @@ import net.catstack.nfcpay.common.server.Result
 import net.catstack.nfcpay.domain.HomeNewsModel
 import net.catstack.nfcpay.domain.PaymentPatternModel
 import net.catstack.nfcpay.domain.ProfileModel
-import net.catstack.nfcpay.ui.payment.PaymentFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -47,7 +47,7 @@ class HomeFragment : BaseFragment(true, R.color.background) {
         logoutIcon.setOnClickListener {
             viewModel.logout()
             findNavController().navigate(
-                PaymentFragmentDirections.actionGlobalLoginFragment()
+                MobileNavigationDirections.actionGlobalLoginFragment()
             )
         }
     }
@@ -86,13 +86,13 @@ class HomeFragment : BaseFragment(true, R.color.background) {
 
     private fun loadPatterns() {
         val patterns = listOf(
-            PaymentPatternModel(R.drawable.image_pattern_create, "Создать шаблон"),
-            PaymentPatternModel(R.drawable.ic_pattern_latte, "Латте\n200 мл"),
-            PaymentPatternModel(R.drawable.ic_pattern_donut, "Пончик с глазурью"),
-            PaymentPatternModel(R.drawable.ic_pattern_americano, "Американо 150 мл"),
-            PaymentPatternModel(R.drawable.ic_pattern_cake, "Пирожное"),
-            PaymentPatternModel(R.drawable.ic_pattern_bun, "Булочка с корицей"),
-            PaymentPatternModel(R.drawable.ic_pattern_cake2, "Кекс"),
+            PaymentPatternModel(R.drawable.image_pattern_create, "Создать шаблон", 0),
+            PaymentPatternModel(R.drawable.ic_pattern_latte, "Латте\n200 мл", 130),
+            PaymentPatternModel(R.drawable.ic_pattern_donut, "Пончик с глазурью", 90),
+            PaymentPatternModel(R.drawable.ic_pattern_americano, "Американо 150 мл", 60),
+            PaymentPatternModel(R.drawable.ic_pattern_cake, "Пирожное", 79),
+            PaymentPatternModel(R.drawable.ic_pattern_bun, "Булочка с корицей", 60),
+            PaymentPatternModel(R.drawable.ic_pattern_cake2, "Кекс", 50),
         )
 
         patternsRecyclerView.addItemDecoration(
@@ -104,7 +104,12 @@ class HomeFragment : BaseFragment(true, R.color.background) {
         )
 
         patternsRecyclerView.adapter = PaymentPatternsRecyclerAdapter(patterns) {
-            println(it.name)
+            if (it.name == "Создать шаблон")
+                return@PaymentPatternsRecyclerAdapter
+
+            findNavController().navigate(
+                MobileNavigationDirections.actionGlobalCreatePaymentFragment(it.sum.toString())
+            )
         }
     }
 

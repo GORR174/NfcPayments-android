@@ -22,11 +22,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_payment"
-        android:name="net.catstack.nfcpay.ui.payment.PaymentFragment"
-        android:label="@string/title_payment"
-        tools:layout="@layout/fragment_payment" />
-    <fragment
         android:id="@+id/loginFragment"
         android:name="net.catstack.nfcpay.ui.auth.login.LoginFragment"
         android:label="@string/title_login"
@@ -62,6 +57,10 @@
             android:id="@+id/action_createPaymentFragment_to_paymentResultFragment"
             app:popUpTo="@id/navigation_home"
             app:destination="@id/paymentResultFragment" />
+        <argument
+            android:name="sum"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <action
         android:id="@+id/action_global_createPaymentFragment"

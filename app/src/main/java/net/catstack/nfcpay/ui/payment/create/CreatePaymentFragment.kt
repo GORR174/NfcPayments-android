@@ -27,14 +27,7 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
         (requireActivity() as MainActivity).hideBottomNavigation()
 
         sumInputField.addTextChangedListener {
-            if (sumInputField.text.isNotBlank()) {
-                sumInputFieldInvisibleText.text = sumInputField.text
-            } else {
-                sumInputFieldInvisibleText.text = "0"
-            }
-
-            nextButton.isEnabled =
-                sumInputField.text.isNotBlank() && sumInputField.text.toString() != "0"
+            onTextChanged()
         }
 
         backButton.setOnClickListener {
@@ -42,6 +35,11 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
         }
 
         nextButton.isEnabled = false
+
+        val sum = CreatePaymentFragmentArgs.fromBundle(requireArguments()).sum
+        if (sum != null) {
+            sumInputField.setText(sum)
+        }
 
         nextButton.setOnClickListener {
             val intent = Intent(requireContext(), NfcActivity::class.java)
@@ -64,6 +62,17 @@ class CreatePaymentFragment : BaseFragment(true, R.color.background) {
             cardMethodButton.setTextColor(resources.getColor(R.color.primary, null))
             cardMethodButton.setBackgroundResource(R.drawable.button_method_unselected)
         }
+    }
+
+    private fun onTextChanged() {
+        if (sumInputField.text.isNotBlank()) {
+            sumInputFieldInvisibleText.text = sumInputField.text
+        } else {
+            sumInputFieldInvisibleText.text = "0"
+        }
+
+        nextButton.isEnabled =
+            sumInputField.text.isNotBlank() && sumInputField.text.toString() != "0"
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
